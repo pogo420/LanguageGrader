@@ -1,3 +1,4 @@
+// modules must be defined in main, so it can be used in other files
 mod data_structures;
 
 use crate::data_structures::sandwich::sandwich;
