@@ -1,3 +1,6 @@
+/*
+ * Sandwich data structure
+ */
 
 pub mod sandwich {  // module containing sandwitch ds(Abstrction), Without public we can't use it.
     // struct
@@ -32,7 +35,7 @@ pub mod sandwich {  // module containing sandwitch ds(Abstrction), Without publi
 mod tests {
     use super::sandwich::new;
 
-    // cheking the Sandwich data structure 
+    // Test case for Sandwich data structure sanity
     #[test]
     fn check_sandwich_object() {
         let sw = new(32, String::from("Boom"),  String::from("Ola 43"));
