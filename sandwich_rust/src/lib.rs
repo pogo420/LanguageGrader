@@ -13,3 +13,4 @@ pub use storage_interface::writer::writer::Writer;
 
 pub mod utils;
 pub use utils::PersistanceResponse;
+pub use utils::is_empty_string;
