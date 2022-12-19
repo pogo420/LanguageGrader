@@ -27,7 +27,6 @@ impl PersistanceEngine {
 
     pub fn save_sandwich<T: Writer>(sand_name : String, 
                                     sand_recipie: String , 
-                                    sand_id: u8, 
                                     writer: &T) -> Result<PersistanceResponse, InvalidSandwichData>
                                     {
         // method to create a sandwich
@@ -36,7 +35,7 @@ impl PersistanceEngine {
             return Err(InvalidSandwichData{});
         }
         else {
-            let sw: Sandwich = sandwich::new(sand_id, sand_name, sand_recipie);
+            let sw: Sandwich = sandwich::new(sand_name, sand_recipie);
             return Ok(writer.save_sandwich(sw));
         }
     }

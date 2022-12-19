@@ -17,11 +17,11 @@ fn check_reader_interface() {
             return TestR{};
         }
         fn get_sandwich(&self, name: String) -> Sandwich {
-            return new(32, name,  String::from("Ola 43"));
+            return new(name,  String::from("Ola 43"));
         }
     }
     let tr: TestR = Reader::new();
-    assert_eq!(tr.get_sandwich(String::from("HelloSandwich")).id, 32);
+    assert_eq!(tr.get_sandwich(String::from("HelloSandwich")).name, "HelloSandwich");
 }
 
 // Test case for writer interface sanity
@@ -34,15 +34,15 @@ fn check_writer_interface() {
             return TestW{};
         }
         fn save_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse {
-            if sandwich.id > 0{
+            if is_empty_string(&sandwich.name){
                 return PersistanceResponse::Success;
             }
             else {
                 return PersistanceResponse::Failure;
             }
         }
-        fn update_sandwich(&self, sandwich: Sandwich, id: u8) -> PersistanceResponse {
-            if sandwich.id > 0 && id > 0{
+        fn update_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse {
+            if is_empty_string(&sandwich.name){
                 return PersistanceResponse::Success;
             }
             else {
@@ -61,7 +61,6 @@ fn check_writer_interface() {
     }
     let tw: TestW = Writer::new();
     let s = Sandwich{
-        id: 32,
         name: String::from("Boom"),
         recipie: String::from("Ola 32")
     };
