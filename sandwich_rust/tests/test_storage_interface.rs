@@ -4,6 +4,8 @@ use sandwich_rust::Sandwich;
 use sandwich_rust::new;
 use sandwich_rust::PersistanceResponse;
 use sandwich_rust::Writer;
+use sandwich_rust::is_empty_string;
+
 
 // Test case for reader interface sanity
 #[test]
@@ -45,6 +47,15 @@ fn check_writer_interface() {
             }
             else {
                 return PersistanceResponse::Failure;
+            }
+        }
+        fn delete_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse 
+        {
+            if is_empty_string(&sandwich.name){
+                return PersistanceResponse::Failure;
+            }
+            else {
+                return PersistanceResponse::Success;
             }
         }
     }

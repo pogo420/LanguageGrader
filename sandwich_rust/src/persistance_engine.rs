@@ -58,8 +58,12 @@ impl PersistanceEngine {
         }
     }
 
-    pub fn delete_sandwich<T: Writer>(sand_name : String){
-        //TODO: implement delete functionality
+    pub fn delete_sandwich<T: Writer, Q: Reader>(sand_name : String, writer: &T, reader: &Q){
+        // method to delete a sandwich app
+
+        let sw: Sandwich = reader.get_sandwich(sand_name);
+        writer.delete_sandwich(sw);
+        
     }
 
 }

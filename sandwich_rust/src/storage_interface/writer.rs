@@ -9,6 +9,6 @@ pub mod writer {
         fn new() -> Self;
         fn save_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse;
 	    fn update_sandwich(&self, sandwich: Sandwich, id: u8) -> PersistanceResponse;
-        // implement + test delete functionality
+        fn delete_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse;
     }
 }
