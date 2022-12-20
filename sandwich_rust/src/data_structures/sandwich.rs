@@ -3,7 +3,10 @@
  */
 
 pub mod sandwich {  // module containing sandwitch ds(Abstrction), Without public we can't use it.
-    // struct
+    
+    use serde::{Serialize, Deserialize};
+
+    #[derive(Serialize, Deserialize)]  // for json support
     pub struct Sandwich {
         pub name: String,
         pub recipie: String
