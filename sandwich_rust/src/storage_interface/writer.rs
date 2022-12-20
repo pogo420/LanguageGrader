@@ -6,7 +6,7 @@ pub mod writer {
     use super::super::super::utils::PersistanceResponse;
 
     pub trait Writer {
-        fn new() -> Self;
+        fn new(file_path: String) -> Self;
         fn save_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse;
 	    fn update_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse;
         fn delete_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse;

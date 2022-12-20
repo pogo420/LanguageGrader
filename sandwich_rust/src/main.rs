@@ -29,9 +29,9 @@ fn main() {
         io::stdin().read_line(&mut inp).expect("failed to readline");
 
         //TODO user input implementation with actual logic
-        PersistanceEngine::save_sandwich(String::from("sand_name"), String::from("sand_recipe"), &JsonWriter{});
-        PersistanceEngine::update_sandwich(String::from("sand_name"), String::from("sand_recipe"), &JsonReader{}, &JsonWriter{});
-        PersistanceEngine::delete_sandwich(String::from("sand_name"), &JsonWriter{}, &JsonReader{});
-        PersistanceEngine::check_sandwich(String::from("sand_name"), &JsonReader{});
+        PersistanceEngine::save_sandwich(String::from("sand_name"), String::from("sand_recipe"), &JsonWriter::default());
+        PersistanceEngine::update_sandwich(String::from("sand_name"), String::from("sand_recipe"), &JsonReader::default(), &JsonWriter::default());
+        PersistanceEngine::delete_sandwich(String::from("sand_name"), &JsonWriter::default(), &JsonReader::default());
+        PersistanceEngine::check_sandwich(String::from("sand_name"), &JsonReader::default());
     }
 }

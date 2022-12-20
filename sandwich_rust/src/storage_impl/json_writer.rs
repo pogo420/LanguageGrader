@@ -3,11 +3,13 @@ use crate::data_structures::sandwich::sandwich::Sandwich;
 use crate::utils::PersistanceResponse;
 
 // TODO write test cases
-pub struct JsonWriter{}
+
+#[derive(Default)]
+pub struct JsonWriter{file_path: String}
 
 impl Writer for JsonWriter {
-    fn new() -> Self {
-        return JsonWriter{};
+    fn new(file_path: String) -> Self {
+        return JsonWriter{file_path: file_path};
     }
     fn save_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse {
         // TODO actual implementation
