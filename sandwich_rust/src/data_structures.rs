@@ -1,2 +1,2 @@
 pub mod sandwich;
-pub mod sandwich_collections;
+pub mod sandwich_collection;
