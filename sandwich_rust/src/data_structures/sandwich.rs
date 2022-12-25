@@ -6,7 +6,7 @@ pub mod sandwich {  // module containing sandwitch ds(Abstrction), Without publi
     
     use serde::{Serialize, Deserialize};
 
-    #[derive(Serialize, Deserialize)]  // for json support
+    #[derive(Serialize, Deserialize, Default)]  // for json support
     pub struct Sandwich {
         pub name: String,
         pub recipie: String

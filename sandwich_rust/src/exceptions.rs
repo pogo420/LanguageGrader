@@ -1,7 +1,4 @@
 
-
-pub mod exceptions {
-
     use std::fmt::Display;
     use std::fmt::Debug;
     use std::error::Error;
@@ -65,4 +62,21 @@ pub mod exceptions {
         }
     }
 
-}
+    /*
+     * Exception: PersistanceFileException
+     * Signifies issue in file for persistance storage
+     */
+    pub struct PersistanceFileException {
+    }
+    impl Error for PersistanceFileException {
+    }
+    impl Display for PersistanceFileException {
+        fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+            return write!(f, "issue in file for persistance storage, raising Exception");
+        }
+    }
+    impl Debug for PersistanceFileException {
+        fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+            return write!(f, "issue in file for persistance storage, raising Exception");
+        }
+    }

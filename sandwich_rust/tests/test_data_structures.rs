@@ -1,5 +1,7 @@
 
 use sandwich_rust::new;
+use sandwich_rust::SandwichCollection;
+
 
 // Test case for Sandwich data structure sanity
 #[test]
@@ -19,3 +21,17 @@ fn check_sandwich_string() {
 
     assert_eq!(response, expected);
     }
+
+#[test]
+fn check_sandwich_collection_object() {
+    let swv = vec![
+        new(String::from("Boom1"),  String::from("Ola 43")), 
+        new(String::from("Boom2"),  String::from("Ola 43"))
+        ];
+    let sws = SandwichCollection{sandwiches: swv};
+    let mut count = 1;
+    for s in sws.sandwiches{
+        assert_eq!(s.name,format!("Boom{}",count));
+        count+=1;
+    }
+}

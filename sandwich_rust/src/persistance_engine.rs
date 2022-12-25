@@ -1,7 +1,7 @@
 use crate::data_structures::sandwich::sandwich::Sandwich;
 use crate::data_structures::sandwich::sandwich;
-use crate::exceptions::exceptions::SandwichNotFoundException;
-use crate::exceptions::exceptions::InvalidSandwichData;
+use crate::exceptions::SandwichNotFoundException;
+use crate::exceptions::InvalidSandwichData;
 use crate::storage_interface::reader::reader::Reader;
 use crate::storage_interface::writer::writer::Writer;
 use crate::utils::PersistanceResponse;
@@ -17,11 +17,15 @@ impl PersistanceEngine {
     pub fn check_sandwich<T: Reader>(name : String, reader: &T) -> Result<Sandwich, SandwichNotFoundException>
     {
         // method to get a sandwich
-        if name == "" || name.is_empty(){
+        if is_empty_string(&name){
             return Err(SandwichNotFoundException{});
         }
         else {
-            return Ok(reader.get_sandwich(name));
+            let sw = reader.get_sandwich(name);
+            if is_empty_string(&sw.name){
+                return Err(SandwichNotFoundException{});
+            }
+            return Ok(sw);
         }
     }
 
