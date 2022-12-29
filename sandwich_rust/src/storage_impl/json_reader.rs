@@ -28,7 +28,7 @@ fn read_file(file_name: &str) -> Result<BufReader<File>, PersistanceFileExceptio
 impl Reader for JsonReader{
     fn get_sandwich(&self, name: String) -> Sandwich {
 
-        let rdr = read_file(&name);
+        let rdr = read_file(&self.file_path);
 
         if rdr.is_err(){
             //TODO: add logger for issues
