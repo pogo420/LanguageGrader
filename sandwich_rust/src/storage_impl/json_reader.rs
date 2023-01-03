@@ -17,6 +17,7 @@ fn read_file(file_name: &str) -> Result<BufReader<File>, PersistanceFileExceptio
     let file = File::open(file_name);
 
     if file.is_err(){
+        println!("Issue in reading file, details:{}", file.unwrap_err());
         return Err(PersistanceFileException{});
     } else {
         let reader = BufReader::new(file.unwrap());
@@ -31,13 +32,13 @@ impl Reader for JsonReader{
         let rdr = read_file(&self.file_path);
 
         if rdr.is_err(){
-            //TODO: add logger for issues
+
             return Sandwich::default();
         }
         let result_json:Result<SandwichCollection, serde_json::Error> = serde_json::from_reader(rdr.unwrap());
 
         if result_json.is_err(){
-            //TODO: add logger for issues
+            println!("Issue in json parsing..{:?}", result_json.err());
             return Sandwich::default();
         }
         let sandwiches : SandwichCollection = result_json.unwrap();
