@@ -10,14 +10,8 @@ mod data_structures;
 mod storage_interface;
 mod utils;
 mod exceptions;
-mod persistance_engine;
-mod storage_impl;
-
-
 use std::io;
-use persistance_engine::PersistanceEngine;
-use storage_impl::json_writer::JsonWriter;
-use storage_impl::json_reader::JsonReader;
+
 
 fn main() {
 
@@ -27,11 +21,5 @@ fn main() {
         inp.clear();
         println!("Enter your command: s->save/c->create/u->update sandwiches, q to quit");
         io::stdin().read_line(&mut inp).expect("failed to readline");
-
-        //TODO user input implementation with actual logic
-        PersistanceEngine::save_sandwich(String::from("sand_name"), String::from("sand_recipe"), &JsonWriter::default());
-        PersistanceEngine::update_sandwich(String::from("sand_name"), String::from("sand_recipe"), &JsonReader::default(), &JsonWriter::default());
-        PersistanceEngine::delete_sandwich(String::from("sand_name"), &JsonWriter::default(), &JsonReader::default());
-        PersistanceEngine::check_sandwich(String::from("sand_name"), &JsonReader::default());
     }
 }

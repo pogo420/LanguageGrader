@@ -9,13 +9,9 @@ pub use data_structures::sandwich::sandwich::Sandwich;
 pub use data_structures::sandwich_collection::SandwichCollection;
 
 pub mod storage_interface;
-pub use storage_interface::reader::reader::Reader;
-pub use storage_interface::writer::writer::Writer;
+pub use storage_interface::StorageInterface;
 
 pub mod exceptions;
-
-pub mod storage_impl;
-pub use storage_impl::json_reader::JsonReader;
 
 pub mod utils;
 pub use utils::PersistanceResponse;
