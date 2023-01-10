@@ -11,8 +11,12 @@ pub use data_structures::sandwich_collection::SandwichCollection;
 pub mod storage_interface;
 pub use storage_interface::StorageInterface;
 
+pub mod json_storage_interface;
+pub use json_storage_interface::JsonStorageInterface;
+
 pub mod exceptions;
 
 pub mod utils;
 pub use utils::PersistanceResponse;
 pub use utils::is_empty_string;
+pub use utils::read_file;

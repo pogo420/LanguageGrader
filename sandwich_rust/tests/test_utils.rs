@@ -1,4 +1,4 @@
-use sandwich_rust::is_empty_string;
+use sandwich_rust::{is_empty_string, read_file};
 
 #[test]
 fn validate_is_empty_string() {
@@ -12,4 +12,22 @@ fn validate_is_empty_string() {
     assert_eq!(is_empty_string(&str1), true);
     assert_eq!(is_empty_string(&str2), true);
     assert_eq!(is_empty_string(&str3), false);
+}
+
+#[test]
+fn valid_read_file() {
+    /*
+    Test case for basic read operation check
+    */
+    let data = read_file(String::from("tests/test_data/file_read_test.txt"));
+    assert_eq!(data, "1 2\n3 4\n");
+}
+
+#[test]
+fn invalid_read_file() {
+    /*
+    Negative Test case for basic read operation check
+    */
+    let data = read_file(String::from("FILE_NOT_EXISTS"));
+    assert_eq!(data, "");
 }

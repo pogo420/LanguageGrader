@@ -10,6 +10,8 @@ mod data_structures;
 mod storage_interface;
 mod utils;
 mod exceptions;
+mod json_storage_interface;
+
 use std::io;
 
 
