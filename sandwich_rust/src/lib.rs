@@ -4,8 +4,7 @@
  * It must be done via lib.rs
  */
 pub mod data_structures;
-pub use data_structures::sandwich::sandwich::new;
-pub use data_structures::sandwich::sandwich::Sandwich;
+pub use data_structures::sandwich::sandwich::{new, Sandwich};
 pub use data_structures::sandwich_collection::SandwichCollection;
 
 pub mod storage_interface;
@@ -17,6 +16,4 @@ pub use json_storage_interface::JsonStorageInterface;
 pub mod exceptions;
 
 pub mod utils;
-pub use utils::PersistanceResponse;
-pub use utils::is_empty_string;
-pub use utils::read_file;
+pub use utils::{PersistanceResponse, is_empty_string, read_file, write_file};

@@ -1,4 +1,4 @@
-use sandwich_rust::{is_empty_string, read_file};
+use sandwich_rust::{is_empty_string, read_file, write_file};
 
 #[test]
 fn validate_is_empty_string() {
@@ -30,4 +30,16 @@ fn invalid_read_file() {
     */
     let data = read_file(String::from("FILE_NOT_EXISTS"));
     assert_eq!(data, "");
+}
+
+#[test]
+fn valid_write_file() {
+    /*
+    Test case for basic write operation check
+    */
+    let data = String::from("1 2\n3 4\n");
+    let response = write_file(String::from("tests/test_data/file_write_test.txt"), data);
+
+    assert_eq!(response, 1);
+    
 }

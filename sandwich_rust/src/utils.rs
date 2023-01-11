@@ -1,4 +1,7 @@
-use std::{fs::read_to_string};
+use std::{fs::{read_to_string, write}};
+/*
+ * Set of utility function for the application usage
+ */
 
 // persistance response
 pub enum PersistanceResponse {
@@ -25,5 +28,16 @@ pub fn read_file(file_path: String) -> String {
     }
     else {
         return String::new();
+    }
+}
+
+pub fn write_file(file_path: String, data: String) -> u8{
+    // function to write into a file, Returns zero in case of issues.
+    let file_result = write(file_path, data);
+    if file_result.is_ok(){
+        return 1;
+    }
+    else {
+        return 0;
     }
 }
