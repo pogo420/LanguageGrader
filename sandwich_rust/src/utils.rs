@@ -20,7 +20,7 @@ pub fn is_empty_string(data: &str) -> bool{
     }
 }
 
-pub fn read_file(file_path: String) -> String {
+pub fn read_file(file_path: &str) -> String {
     // Function to read file
     let file_result = read_to_string(file_path);
     if file_result.is_ok(){
@@ -31,7 +31,7 @@ pub fn read_file(file_path: String) -> String {
     }
 }
 
-pub fn write_file(file_path: String, data: String) -> u8{
+pub fn write_file(file_path: &str, data: &str) -> u8{
     // function to write into a file, Returns zero in case of issues.
     let file_result = write(file_path, data);
     if file_result.is_ok(){

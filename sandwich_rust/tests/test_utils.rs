@@ -19,7 +19,7 @@ fn valid_read_file() {
     /*
     Test case for basic read operation check
     */
-    let data = read_file(String::from("tests/test_data/file_read_test.txt"));
+    let data = read_file("tests/test_data/file_read_test.txt");
     assert_eq!(data, "1 2\n3 4\n");
 }
 
@@ -28,7 +28,7 @@ fn invalid_read_file() {
     /*
     Negative Test case for basic read operation check
     */
-    let data = read_file(String::from("FILE_NOT_EXISTS"));
+    let data = read_file("FILE_NOT_EXISTS");
     assert_eq!(data, "");
 }
 
@@ -37,8 +37,8 @@ fn valid_write_file() {
     /*
     Test case for basic write operation check
     */
-    let data = String::from("1 2\n3 4\n");
-    let response = write_file(String::from("tests/test_data/file_write_test.txt"), data);
+    let data = "1 2\n3 4\n";
+    let response = write_file("tests/test_data/file_write_test.txt", data);
 
     assert_eq!(response, 1);
     
