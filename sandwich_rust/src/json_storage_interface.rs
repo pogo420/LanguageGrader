@@ -23,6 +23,24 @@ fn read_sandwich_collections(file_path: &str) -> Result<SandwichCollection, serd
     return serde_json::from_str(&data);
 }
 
+fn write_sadwich_collections(file_path: &str, sandwiches: &Vec<Sandwich>) -> PersistanceResponse {
+    // Private function to handle writing sandwich collection from json file
+
+    let data_final = serde_json::to_string_pretty(&sandwiches);
+
+    if data_final.is_err(){
+        return PersistanceResponse::Failure;
+    }
+    else {
+        if write_file(&file_path, &data_final.unwrap()) <1 {
+            return PersistanceResponse::Failure ;
+        }
+        else {
+            return PersistanceResponse::Success;
+        }
+    }
+}
+
 impl StorageInterface for JsonStorageInterface {
 
     fn setup(file_path: String) -> JsonStorageInterface {
@@ -63,19 +81,8 @@ impl StorageInterface for JsonStorageInterface {
 
         sandwiches.append(&mut vec);
 
-        let data_final = serde_json::to_string_pretty(&sandwiches);
+        return write_sadwich_collections(&self.file_path, &sandwiches);
 
-        if data_final.is_err(){
-            return PersistanceResponse::Failure;
-        }
-        else {
-            if write_file(&self.file_path, &data_final.unwrap()) <1 {
-                return PersistanceResponse::Failure ;
-            }
-            else {
-                return PersistanceResponse::Success;
-            }
-        }
     }
     
     fn delete_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse {
@@ -98,19 +105,7 @@ impl StorageInterface for JsonStorageInterface {
         }
         sandwiches.remove(count); 
 
-        let data_final = serde_json::to_string_pretty(&sandwiches);
-
-        if data_final.is_err(){
-            return PersistanceResponse::Failure;
-        }
-        else {
-            if write_file(&self.file_path, &data_final.unwrap()) <1 {
-                return PersistanceResponse::Failure ;
-            }
-            else {
-                return PersistanceResponse::Success;
-            }
-        }
+        return write_sadwich_collections(&self.file_path, &sandwiches);
     }
 
 }
