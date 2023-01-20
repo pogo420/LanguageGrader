@@ -5,6 +5,10 @@
 * With use keyword we just tell the compiler to use it.
  */
 
+/*
+Below is a rust attributes, they are metadata added to code.
+https://doc.rust-lang.org/reference/attributes.html
+*/
  #![allow(unused)] // telling to compiler to prevent warning of unused code.
 mod data_structures;
 mod storage_interface;
