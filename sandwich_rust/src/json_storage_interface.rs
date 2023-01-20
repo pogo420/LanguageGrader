@@ -6,14 +6,21 @@ use crate::utils::{PersistanceResponse, read_file, write_file};
 use serde_json;
 
 /*
-TODO
-add test cases + use solid
+ * TODO
+ * add test cases + use solid
  */ 
 
 
 #[derive(Default)]
 pub struct JsonStorageInterface {
     file_path: String
+}
+
+fn read_sandwich_collections(file_path: &str) -> Result<SandwichCollection, serde_json::Error> {
+    // Private function to handle reading sandwich collection from json file
+
+    let data = read_file(file_path);
+    return serde_json::from_str(&data);
 }
 
 impl StorageInterface for JsonStorageInterface {
@@ -24,9 +31,8 @@ impl StorageInterface for JsonStorageInterface {
 
     fn get_sandwich(&self, name: String) -> Sandwich {
         // Method to implement get sandwich
-        
-        let data = read_file(&self.file_path);
-        let serde_response:Result<SandwichCollection, serde_json::Error> = serde_json::from_str(&data);
+
+        let serde_response:Result<SandwichCollection, serde_json::Error> = read_sandwich_collections(&self.file_path);
 
         if serde_response.is_err(){
             return new(String::new(), String::new());
@@ -42,10 +48,9 @@ impl StorageInterface for JsonStorageInterface {
     }
     
     fn save_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse {
-        // method to implement saving sandwich
+        // Method to implement saving sandwich
 
-        let data = read_file(&self.file_path);
-        let serde_response:Result<SandwichCollection, serde_json::Error> = serde_json::from_str(&data);
+        let serde_response:Result<SandwichCollection, serde_json::Error> = read_sandwich_collections(&self.file_path);
 
         if serde_response.is_err(){
             return PersistanceResponse::Failure;
@@ -72,15 +77,40 @@ impl StorageInterface for JsonStorageInterface {
             }
         }
     }
-
-	fn update_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse {
-        _ = sandwich;
-        return PersistanceResponse::Success;
-    }
     
     fn delete_sandwich(&self, sandwich: Sandwich) -> PersistanceResponse {
-        _ = sandwich;
-        return PersistanceResponse::Success;
+        // Method to implement logic to delete sandwich
+        let serde_response:Result<SandwichCollection, serde_json::Error> = read_sandwich_collections(&self.file_path);
+
+        if serde_response.is_err(){
+            return PersistanceResponse::Failure;
+        }
+
+        let mut sandwiches = serde_response.unwrap().sandwiches;
+        
+        let mut count = 0;
+        for sad in &sandwiches {
+            if sad.name == sandwich.name {
+               break;
+            }
+            count +=1;
+            println!("{}",count);
+        }
+        sandwiches.remove(count); 
+
+        let data_final = serde_json::to_string_pretty(&sandwiches);
+
+        if data_final.is_err(){
+            return PersistanceResponse::Failure;
+        }
+        else {
+            if write_file(&self.file_path, &data_final.unwrap()) <1 {
+                return PersistanceResponse::Failure ;
+            }
+            else {
+                return PersistanceResponse::Success;
+            }
+        }
     }
 
 }
