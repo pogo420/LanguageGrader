@@ -5,11 +5,6 @@ use crate::utils::{PersistanceResponse, read_file, write_file};
 
 use serde_json;
 
-/*
- * TODO
- * add test cases + use solid
- */ 
-
 
 #[derive(Default)]
 pub struct JsonStorageInterface {
