@@ -24,36 +24,37 @@ SandwichApp
 
 Sandwich
 	// data structure 
-	Id
 	Name
 	Recipe
+	
+SandwichCollection
+	// data structures
+	Collection of Sandwiches 
 
 PersistanceEngine:
 	// Master logic for saving the Sandwich
+	// Will manage storage interface.
 
-StorageInterfaceReader:
-	// leverage json/xml data formats (All language has DB connectors).
-	get_sandwich(Name)	
-
-StorageInterfaceWriter:
-	// leverage json/xml data formats (All language has DB connectors).
-	save_sandwich(Sandwich)	
-	update_sandwich(Sandwich, id)
-
-StorageInterfaceReaderWriter
-	StorageInterfaceReader
-	StorageInterfaceWriter
+StorageInterface:
+	// leverage json/xml data formats.
+	setup(file_name) -> Self
+	get_sandwich(Name) -> Sandwich
+	save_sandwich(Sandwich)	-> Sucess/Failure
+	update_sandwich(Sandwich) -> Sucess/Failure
+	delete_sandwich(Sandwich) -> Sucess/Failure
 
 Exceptions:
 	DuplicateSandwichException
 	InvalidSandwichData
 	SandwichNotFoundException
+	PersistanceFileException
 
 Additional:
-  Add logger in the code flow.
-  Command line argumnet to enable logger modes.
-  Add unit test cases for each logic.
+	Add logger in the code flow.
+	Command line argumnet to enable logger modes.
+	Add unit test cases for each logic.
 ```
+
 ## Concurrency pointers:
 * Multi threading frameworks.
 * Multi processing frameworks.
