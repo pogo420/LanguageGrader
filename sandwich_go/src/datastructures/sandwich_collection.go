@@ -17,7 +17,11 @@ func (sw *SandwichCollection) SetSandwiches(sandwiches []Sandwich) {
 
 //Public method for add a new sandwich object
 func (sw *SandwichCollection) AddSandwich(sandwich Sandwich) {
-	(*sw).sandwiches = append((*sw).sandwiches, sandwich)
+	if (*sw).isEmpty() {
+		(*sw).sandwiches = make([]Sandwich, 0) // if empty create a new
+	} else {
+		(*sw).sandwiches = append((*sw).sandwiches, sandwich)
+	}
 }
 
 //private method for getting index
@@ -28,6 +32,15 @@ func (sw *SandwichCollection) getIndex(name string) int {
 		}
 	}
 	return -1
+}
+
+//private method for checking if collection is empty or not
+func (sw *SandwichCollection) isEmpty() bool {
+	if (*sw).sandwiches == nil || len((*sw).sandwiches) <= 0 {
+		return true
+	} else {
+		return false
+	}
 }
 
 // Public method for deleting sandwich from collection
