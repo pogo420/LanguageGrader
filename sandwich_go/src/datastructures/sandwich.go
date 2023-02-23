@@ -2,26 +2,26 @@ package datastructures
 
 // Data structure - for wrapping the sandwich data.
 type Sandwich struct {
-	name   string
-	recipe string
+	Name   string
+	Recipe string
 }
 
-// Public method to get sandwich name
+// Public method to get sandwich Name
 func (sw *Sandwich) GetName() string {
-	return (*sw).name
+	return (*sw).Name
 }
 
-// Public method to get sandwich recipe
+// Public method to get sandwich Recipe
 func (sw *Sandwich) GetRecipe() string {
-	return (*sw).recipe
+	return (*sw).Recipe
 }
 
-// Public method to set sandwich name
-func (sw *Sandwich) SetName(name string) {
-	(*sw).name = name
+// Public method to set sandwich Name
+func (sw *Sandwich) SetName(Name string) {
+	(*sw).Name = Name
 }
 
-// Public method to set sandwich recipe
-func (sw *Sandwich) SetRecipe(recipe string) {
-	(*sw).recipe = recipe
+// Public method to set sandwich Recipe
+func (sw *Sandwich) SetRecipe(Recipe string) {
+	(*sw).Recipe = Recipe
 }
